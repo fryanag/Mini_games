@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mine</title>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #edfdfc;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .chat-container {
+            width: 400px; /* Lebar maksimal */
+            max-width: 100%; /* Responsif */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        h1 {
+        text-align: center;
+            margin-bottom: 3px; /* Mengurangi jarak bawah h1 */
+        }
+        h2 {
+            text-align: center;
+            margin-top: 3px; /* Mengurangi jarak atas h2 */
+}
+
+        #chatOutput {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 400px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #25D366;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #1ebe53;
+        }
+        .user-message {
+            text-align: right;
+            margin: 5px 0;
+            color: #000;
+        }
+        .bot-message {
+            text-align: left;
+            margin: 5px 0;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <h1>SOBAT CHATBOT</h1>
+        <h2>  Simple Chatbot about USU</h2>
+        <div id="chatOutput"></div>
+        <div style="display: flex;">
+            <input id="userInput" type="text" placeholder="Type something...">
+            <button id="sendBtn">send</button>
+        </div>
+    </div>
+
+    <py-script>
+        from pyscript import Element
+
+        def respond(event):
+            user_input = Element('userInput').element.value.lower()
+            if "halo" in user_input:
+                response = "Halo! Apa yang bisa saya bantu?"
+            elif "hai" in user_input:
+                response ="haii juga"
+            elif "apa kabar" in user_input:
+                response = "Saya baik-baik saja, terima kasih!"
+            elif"kamu siapa" in user_input:
+                response = "saya adalah chatbot buatan Alma"
+            elif"jelaskan tentang usu" in user_input:
+                response = "USU adalah singkatan dari Universitas Sumatera Utara, yang beralamat di jl.Djamin Ginting"
+            else:
+                response = "Maaf, saya tidak mengerti."
+
+            Element('chatOutput').element.innerHTML += f"<p><strong>Kamu:</strong> {user_input}</p>"
+            Element('chatOutput').element.innerHTML += f"<p><strong>Bot:</strong> {response}</p>"
+            Element('userInput').element.value = ""
+
+        Element('sendBtn').element.onclick = respond
+    </py-script>
+</body>
+</html>

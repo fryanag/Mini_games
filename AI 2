@@ -1,0 +1,34 @@
+# Definisi respons chatbot berdasarkan kata kunci
+def chatbot_response(user_input):
+    # Ubah input pengguna menjadi huruf kecil agar pencocokan kata lebih mudah
+    user_input = user_input.lower()
+
+    # Beberapa respons sederhana berdasarkan kata kunci
+    if "hai" in user_input or "halo" in user_input:
+        return "Halo! Ada yang bisa saya bantu?"
+    elif "apa kabar" in user_input:
+        return "Saya baik, terima kasih! Bagaimana dengan kamu?"
+    elif "siapa nama kamu" in user_input:
+        return "Saya adalah chatbot sederhana yang diciptakan untuk membantu kamu!"
+    elif "terima kasih" in user_input:
+        return "Sama-sama! Senang bisa membantu."
+    elif "selamat tinggal" in user_input or "bye" in user_input:
+        return "Selamat tinggal! Semoga harimu menyenangkan!"
+    else:
+        return "Maaf, saya belum mengerti pertanyaan kamu. Bisa dijelaskan lagi?"
+
+# Fungsi utama untuk menjalankan chatbot
+def start_chat():
+    print("Chatbot: Hai, saya adalah chatbot sederhana. Ketik 'selamat tinggal' atau 'bye' untuk keluar.")
+    
+    while True:
+        user_input = input("Kamu: ")
+        if user_input.lower() in ["selamat tinggal", "bye"]:
+            print("Chatbot: Selamat tinggal! Sampai jumpa lagi.")
+            break
+        
+        response = chatbot_response(user_input)
+        print("Chatbot:", response)
+
+# Memulai percakapan dengan chatbot
+start_chat()

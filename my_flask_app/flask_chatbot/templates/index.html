@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Pet's Name Chatbot</title>
+</head>
+<body>
+    <div class="chat-container">
+        <div id="chatbox"></div>
+        <input type="text" id="userInput" placeholder="Say something about your pet..." />
+        <button id="sendBtn">Send</button>
+    </div>
+    <script>
+        document.getElementById('sendBtn').onclick = function() {
+            const userInput = document.getElementById('userInput').value;
+            document.getElementById('userInput').value = '';
+            addMessage('You: ' + userInput);
+            fetch('/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => addMessage('Bot: ' + data.response));
+        };
+
+        function addMessage(message) {
+            const chatbox = document.getElementById('chatbox');
+            const newMessage = document.createElement('div');
+            newMessage.textContent = message;
+            chatbox.appendChild(newMessage);
+        }
+    </script>
+</body>
+</html>

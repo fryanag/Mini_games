@@ -1,0 +1,48 @@
+from urllib import response
+from flask import Flask, render_template, request, jsonify
+import os
+
+
+# Creating ChatBot Instancep
+
+
+ # Training with Personal Ques & Ans 
+training_data_quesans = open('training_data/inspector.txt').read().splitlines()
+training_data_personal = open('training_data/simple.txt').read().splitlines()
+training_data_conv = open('training_data/waf.txt').read().splitlines()
+
+
+app = Flask(__name__,template_folder='templates', static_folder='static')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@app.route('/')
+def index():
+    return render_template('home.html')
+
+
+
+
+
+@app.route('/get_response', methods=['GET','POST'])
+
+
+def get_response():
+    user_input = request.form['user_input']
+
+    return jsonify({'response': str(response)})
+
+if __name__ == "__main__":
+ app.run(host='127.0.0.1', port=5000)
